@@ -91,6 +91,8 @@ def generate_counselor_json(counselors, zipcodes, target):
     connection = get_db_connection()
     fill_db(connection, counselors)
 
+    os.makedirs(target, exist_ok=True)
+
     logger.info("generating JSON into %s", target)
 
     for zipcode, (latitude_degrees, longitude_degrees) in zipcodes.items():
@@ -116,6 +118,8 @@ def generate_counselor_json(counselors, zipcodes, target):
 def generate_counselor_html(source_dir, target_dir):
     template_name = "housing_counselor/pdf_selfcontained.html"
     template = loader.get_template(template_name)
+
+    os.makedirs(target_dir, exist_ok=True)
 
     for zipcode, filename in get_counselor_json_files(source_dir):
         with open(filename) as f:
