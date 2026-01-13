@@ -1,4 +1,4 @@
-Django==5.2.7
+Django==5.2.10
 requests==2.32.5
 responses==0.25.8
 s4cmd==2.1.0
